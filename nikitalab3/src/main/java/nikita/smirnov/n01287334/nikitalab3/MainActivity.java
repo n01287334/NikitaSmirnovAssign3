@@ -1,5 +1,6 @@
 package nikita.smirnov.n01287334.nikitalab3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,8 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
@@ -70,9 +75,30 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().
                     beginTransaction().replace(R.id.flContent,new HomeFragment()).commit();
         }
-
-
     }
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater= getMenuInflater();
+        inflater.inflate(R.menu.helpmenu, menu);
+        return true;
+    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch(item.getItemId()){
+//            case R.id.item1:
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+//                startActivity(browserIntent);
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -105,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_second_fragment:
                 fragmentClass = SettingsFragment.class;
                 break;
+
 //            case R.id.nav_third_fragment:
 //                fragmentClass = ThirdFragment.class;
 //                break;
@@ -163,8 +190,24 @@ public boolean onOptionsItemSelected(MenuItem item) {
     if (drawerToggle.onOptionsItemSelected(item)) {
         return true;
     }
+    switch(item.getItemId()) {
+        case R.id.item1:
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=MbU4fPYRvcY&t=1s"));
+            startActivity(browserIntent);
+    }
+
     return super.onOptionsItemSelected(item);
 }
+
+
+//        switch(item.getItemId()){
+//            case R.id.item1:
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+//                startActivity(browserIntent);
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+
 
 
 }
