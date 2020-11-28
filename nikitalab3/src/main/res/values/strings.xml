@@ -20,4 +20,17 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
+    <string-array name="courses">
+        <item>CENG317</item>
+        <item>CENG318</item>
+        <item>CENG319</item>
+        <item>CENG320</item>
+        <item>HESL024</item>
+        <item>NEST203</item>
+    </string-array>
+
+
+    <string name="cancel">Ok</string>
+<!--    <string name="picker"></string>-->
+
 </resources>

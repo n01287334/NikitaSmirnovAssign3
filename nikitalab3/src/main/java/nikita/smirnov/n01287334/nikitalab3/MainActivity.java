@@ -17,8 +17,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 //public class MainActivity extends AppCompatActivity {
 //
@@ -37,11 +42,24 @@ public class MainActivity extends AppCompatActivity {
     // Make sure to be using androidx.appcompat.app.ActionBarDrawerToggle version.
     private ActionBarDrawerToggle drawerToggle;
 
-
+//     TextView currenttimee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        currenttimee=findViewById(R.id.currentdate);
+//        Date currenttime = Calendar.getInstance().getTime();
+//        String formatted = DateFormat.getDateInstance(DateFormat.LONG).format(currenttime);
+//        currenttimee.setText(formatted);
+
+//        //setContentView(R.layout.fragment_home);
+//        TextView theDate = (TextView)findViewById(R.id.currentdate);
+//        String currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
+//        // textView is the TextView view that should display it
+//        theDate.setText(currentDateTimeString);
+
+
 
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
