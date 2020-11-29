@@ -1,13 +1,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#8E0093">
+    android:background="#8E0093"
+    android:icon="@drawable/ic_settings"
+    app:icon="@drawable/ic_settings">
 
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="#DCD0DF">-->
-
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="#DCD0DF">-->
 
 
     <PreferenceCategory
@@ -15,22 +16,38 @@
         app:title="@string/messages_header">
 
         <ListPreference
-            android:title="Pick your favourite color"
-            android:key="listPref"
             android:defaultValue="3"
             android:entries="@array/listArray"
             android:entryValues="@array/listValues"
-            />
+            android:key="listPref"
+            android:title="Pick your favourite color" />
 
     </PreferenceCategory>
 
+    <!--    <Preference>-->
+    <SeekBarPreference
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_centerVertical="true" />
+    <!--    </Preference>-->
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="portrait"
+        android:title="Portrait layout only"
+        android:summaryOn="Portrait mode only ON"
+        android:summaryOff="Portrait mode only OFF"/>
+
     <Preference
-        android:title="Acts like a button"
+        android:foreground="@android:drawable/ic_menu_save"
         android:key="@string/myCoolButton"
         android:summary="This is a cool button"
-        />
+        android:title="Acts like a button" />
 
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </PreferenceScreen>

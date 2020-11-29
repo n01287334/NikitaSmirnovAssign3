@@ -25,15 +25,6 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-//public class MainActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//    }
-//}
-
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
@@ -48,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        currenttimee=findViewById(R.id.currentdate);
-//        Date currenttime = Calendar.getInstance().getTime();
-//        String formatted = DateFormat.getDateInstance(DateFormat.LONG).format(currenttime);
-//        currenttimee.setText(formatted);
-
-//        //setContentView(R.layout.fragment_home);
-//        TextView theDate = (TextView)findViewById(R.id.currentdate);
-//        String currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
-//        // textView is the TextView view that should display it
-//        theDate.setText(currentDateTimeString);
-
-
-
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         // This will display an Up icon (<-), we will replace it with hamburger later
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         // Setup drawer view
         setupDrawerContent(nvDrawer);
 
-
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
 
@@ -96,27 +72,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
         inflater.inflate(R.menu.helpmenu, menu);
         return true;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch(item.getItemId()){
-//            case R.id.item1:
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-//                startActivity(browserIntent);
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -193,16 +154,6 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // The action bar home/up action should open or close the drawer.
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                mDrawer.openDrawer(GravityCompat.START);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
     if (drawerToggle.onOptionsItemSelected(item)) {
@@ -216,15 +167,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
     return super.onOptionsItemSelected(item);
 }
-
-
-//        switch(item.getItemId()){
-//            case R.id.item1:
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-//                startActivity(browserIntent);
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
 
 
 

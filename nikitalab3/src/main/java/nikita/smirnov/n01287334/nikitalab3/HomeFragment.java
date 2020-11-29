@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -20,11 +22,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,6 +52,18 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    //Seek bar object
+    private SeekBar seekBar;
+    //Variable to store brightness value
+    private int brightness;
+    //Content resolver used as a handle to the system's settings
+    private ContentResolver cResolver;
+    //Window object, that will store a reference to the current window
+    private Window window;
+    TextView txtPerc;
+    /** Called when the activity is first created. */
 
     public HomeFragment() {
         // Required empty public constructor
@@ -79,19 +95,21 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
+
+
+
+
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_home, container, false);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View RootView = inflater.inflate(R.layout.fragment_home, container, false);
-//        TextView tv = (TextView)RootView.findViewById(R.id.currentdate);
-//        tv.setText("HI");
 
         DateFormat df = new SimpleDateFormat("yyyy-MMM-dd,  HH:mm");
         String dateToday = df.format(Calendar.getInstance().getTime());
@@ -109,11 +127,7 @@ public class HomeFragment extends Fragment {
 //        final String text = spinner.getSelectedItem().toString();
 
 
-       final DatePicker picker =(DatePicker)RootView.findViewById(R.id.datePicker1);
-//        TextView tvw = null;
-//        tvw.setText("Selected Date: "+ picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.getYear());
-//        final String tv = tvw.toString();
-
+        final DatePicker picker =(DatePicker)RootView.findViewById(R.id.datePicker1);
         ImageButton button = (ImageButton) RootView.findViewById(R.id.imageButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -128,32 +142,45 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        while (true) {
-//            ListPreference listPref = (ListPreference) findPreference("listPref");
-//            String value = listPref.getValue().toString();
+
+
+        //SharedPreferences preferences =getContext().getSharedPreferences("portrait", Context.MODE_PRIVATE);
+        //boolean portrait = preferences.getBoolean("portrait", false);
+        ////String p = getDefaults("portrait", getContext());
+        //Log.d("key p is on", p);
+        //Do whatever you want here. This is an example.
+//        if (portrait) {
+//            //testPref.setSummary("Enabled");
+//            String on = "on";
+//            Log.d("key is on", on);
+//        } else {
+//            //testPref.setSummary("Disabled");
+//            String off = "off";
+//            Log.d("key is off", off);
+//        }
+//Activity activity;
+        //SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String b = "";
+        if (preferences.getBoolean("portrait", true)) {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            Log.d("key is ON", b);
+        }else {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            Log.d("key is OFF", b);
+        }
+
+
+
+
             SharedPreferences colors_app = getContext().getSharedPreferences("listPref", Context.MODE_PRIVATE);
             int colorcode2 = colors_app.getInt("listPref", 3);
             String cc2 = Integer.toString(colorcode2);
-            Log.d("colorcode2 is", cc2);
-
-            //String str = colors_app.getString("listPref", "");
 
 
             String str =getDefaults("listPref", getContext());
-        Log.d("str is", str);
-
-//            switch (colorcode2) {
-//                case 1:
-//                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgBlue));
-//                    break;
-//                case 2:
-//                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.green));
-//                    break;
-//                case 3:
-//                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgGreen));
-//                    break;
-//            }
-
             switch (str) {
                 case "1":
                     RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgBlue));
@@ -167,7 +194,6 @@ public class HomeFragment extends Fragment {
             }
 
             return RootView;
-//        }
     }
 
     public static String getDefaults(String key, Context context) {
@@ -197,19 +223,5 @@ public class HomeFragment extends Fragment {
         return a;
     }
 
-//    public void showDialog(){
-
-//        new AlertDialog.Builder(getContext())
-//                .setTitle("Delete entry")
-//                .setMessage(R.string.app_name)
-//
-//                // Specifying a listener allows you to take an action before dismissing the dialog.
-//                // The dialog is automatically dismissed when a dialog button is clicked.
-//
-//                // A null listener allows the button to dismiss the dialog and take no further action.
-//                .setNegativeButton(android.R.string.no, null)
-//
-//                .show();
-//        }
 }
 

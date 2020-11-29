@@ -1,6 +1,9 @@
 package nikita.smirnov.n01287334.nikitalab3;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.annotation.ColorRes;
 import androidx.preference.CheckBoxPreference;
@@ -17,51 +23,51 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreference;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
+
+    public SwitchPreference testPref;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //View RootView = inflater.inflate(R.layout.root_preferences, container, false);
 
-//        ListPreference listPref = (ListPreference) findPreference("listPref");
-//        String value = listPref.getValue().toString();
+         final View view = super.onCreateView(inflater, container, savedInstanceState);
 
 
-         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-         final View vIew = view;
 
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-//        String defaultValue = "default"; // assign some meaningful default value
-//         String amountPlayers = sharedPref.getString("listPref", defaultValue);
-//        final String x=bg(amountPlayers);
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+//        String b = "";
+//        if (preferences.getBoolean("portrait", true)) {
+//            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            Log.d("key is ON", b);
+//        }else {
+//            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+//            Log.d("key is OFF", b);
+//        }
 
-       // view.setBackgroundColor(Color.CYAN);
-        //getListView().setBackgroundColor(Color.rgb(4, 26, 55));
 
-//        Preference key = findPreference(getString(R.string.cancel));
 
         ListPreference listPref = (ListPreference) findPreference("listPref");
         String value = listPref.getValue().toString();
         Log.d("value is", value);
+
         switch(value){
-            case "3":
-                vIew.setBackgroundColor(Color.WHITE);
+            case "1":
+                view.setBackgroundColor(Color.rgb(52, 168, 235));
                 break;
             case "2":
-                vIew.setBackgroundColor(Color.GREEN);
+                view.setBackgroundColor(Color.GREEN);
                 break;
-            case "1":
-                vIew.setBackgroundColor(Color.BLUE);
+            case "3":
+                view.setBackgroundColor(Color.WHITE);
                 break;
 //                    default:
 //                        vIew.setBackgroundColor(Color.WHITE);
@@ -73,70 +79,67 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                //ListPreference color = (ListPreference)RootView.findViewById(R.id.)
-//                String key = preference.getKey();
-//                Log.d("key is", key);
-//                //if (preference == 3)
-//                switch(key){
-//                    case "3":
-//                        vIew.setBackgroundColor(Color.WHITE);
-//                        break;
-//                    case "2":
-//                        //setTheme(R.style.PreferenceTheme2);
-//                        vIew.setBackgroundColor(Color.CYAN);
-//                        break;
-//                    case "1":
-//                        vIew.setBackgroundColor(Color.BLUE);
-//                        //setTheme(R.style.PreferenceTheme1);
-//                        break;
-////                    default:
-////                        vIew.setBackgroundColor(Color.WHITE);
-//                }
 
                 ListPreference listPref = (ListPreference) findPreference("listPref");
                 String value = listPref.getValue().toString();
-//                //listPref.commit();
-//                Log.d("value is", value);
                 switch(value){
                     case "1":
-                        vIew.setBackgroundColor(Color.rgb(52, 168, 235));
+                        view.setBackgroundColor(Color.rgb(52, 168, 235));
                         break;
                     case "2":
-                        vIew.setBackgroundColor(Color.GREEN);
-//                        setTheme(R.style.PreferenceTheme2);
+                        view.setBackgroundColor(Color.GREEN);
                         break;
                     case "3":
-                        vIew.setBackgroundColor(Color.WHITE);
+                        view.setBackgroundColor(Color.WHITE);
                         break;
                     //default:
                     //    vIew.setBackgroundColor(Color.WHITE);
                 }
 
+
+
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                String b = "";
+                if (preferences.getBoolean("portrait", true)) {
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    Log.d("key is ON", b);
+                }else {
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                    Log.d("key is OFF", b);
+                }
+
+
+
+
+
                 return true;
             }
         });
 
-        return vIew;
-
-        //return RootView;
+        return view;
     }
 
-//    public String val(){
-//        ListPreference listPref = (ListPreference) findPreference("listPref");
-//        String value = listPref.getValue().toString();
-//                return value;
-//    }
-
-
-    public String bg(){
-//        String amountPlayers = sharedPref.getString("listPref", defaultValue);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String defaultValue = "default"; // assign some meaningful default value
-        String amountPlayers = sharedPref.getString("listPref", defaultValue);
-
-
-        return amountPlayers;
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals("portrait")) {
+            boolean portrait = sharedPreferences.getBoolean("portrait", false);
+            //Do whatever you want here. This is an example.
+            if (portrait) {
+                testPref.setSummary("Enabled");
+                String on = "on";
+                Log.d("key is on", on);
+            } else {
+                testPref.setSummary("Disabled");
+                String off = "off";
+                Log.d("key is off", off);
+            }
+        }
     }
 
-    //setTheme(android.R.style.Theme);
+
+
+
+
+
 }
+
