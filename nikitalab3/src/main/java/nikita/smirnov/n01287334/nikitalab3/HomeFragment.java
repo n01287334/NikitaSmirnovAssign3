@@ -4,13 +4,19 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceManager;
 
 import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,7 +98,6 @@ public class HomeFragment extends Fragment {
         TextView title = (TextView) RootView.findViewById(R.id.currentdate);
         title.setText(dateToday);
 
-
         final Spinner spinner = (Spinner) RootView.findViewById(R.id.spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -101,11 +106,7 @@ public class HomeFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
-        final TextView textView = (TextView)spinner.getSelectedView();
-        //final String text = textView.getText().toString();
-        final String text = spinner.getSelectedItem().toString();
-
-
+//        final String text = spinner.getSelectedItem().toString();
 
 
        final DatePicker picker =(DatePicker)RootView.findViewById(R.id.datePicker1);
@@ -117,45 +118,71 @@ public class HomeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
-                //showDialog();
-
                 new AlertDialog.Builder(getContext())
                         .setTitle(chosenC(spinner)+ " " +getDateFromDatePicker(picker))
-//                        .setMessage(getDateFromDatePicker(picker))
                         //.setMessage(chosenC(spinner)+ " " +getDateFromDatePicker(picker))
-                        // Specifying a listener allows you to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.
-
                         // A null listener allows the button to dismiss the dialog and take no further action.
                         .setNegativeButton(android.R.string.no, null)
-
                         .show();
             }
         });
 
+//        while (true) {
+//            ListPreference listPref = (ListPreference) findPreference("listPref");
+//            String value = listPref.getValue().toString();
+            SharedPreferences colors_app = getContext().getSharedPreferences("listPref", Context.MODE_PRIVATE);
+            int colorcode2 = colors_app.getInt("listPref", 3);
+            String cc2 = Integer.toString(colorcode2);
+            Log.d("colorcode2 is", cc2);
 
-        return RootView;
+            //String str = colors_app.getString("listPref", "");
 
 
+            String str =getDefaults("listPref", getContext());
+        Log.d("str is", str);
+
+//            switch (colorcode2) {
+//                case 1:
+//                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgBlue));
+//                    break;
+//                case 2:
+//                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.green));
+//                    break;
+//                case 3:
+//                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgGreen));
+//                    break;
+//            }
+
+            switch (str) {
+                case "1":
+                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgBlue));
+                    break;
+                case "2":
+                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.green));
+                    break;
+                case "3":
+                    RootView.findViewById(R.id.fragment_home).setBackgroundColor(getResources().getColor(R.color.colorBgGreen));
+                    break;
+            }
+
+            return RootView;
+//        }
     }
+
+    public static String getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(key, null);
+    }
+
+
+
+
 
     public String chosenC(Spinner spinner){
-
-//        //Spinner spinner = (Spinner) RootView.findViewById(R.id.spinner);
-//// Create an ArrayAdapter using the string array and a default spinner layout
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-//                R.array.courses, android.R.layout.simple_spinner_item);
-//// Specify the layout to use when the list of choices appears
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//// Apply the adapter to the spinner
-//        spinner.setAdapter(adapter);
-//        TextView textView = (TextView)spinner.getSelectedView();
-//        //final String text = textView.getText().toString();
         String text = spinner.getSelectedItem().toString();
-
         return text;
     }
-
 
     public static String getDateFromDatePicker(DatePicker datePicker){
         DateFormat f = new SimpleDateFormat("MMM-dd-yyyy");
@@ -184,18 +211,5 @@ public class HomeFragment extends Fragment {
 //
 //                .show();
 //        }
-}
- class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-    //...
-
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-         parent.getItemAtPosition(pos);
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
-    }
 }
 

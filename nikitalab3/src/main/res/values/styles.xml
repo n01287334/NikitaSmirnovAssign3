@@ -16,6 +16,30 @@
     <item name="colorPrimaryDark">#512DA8</item>
     <item name="colorAccent">#FF4081</item>
     <item name="android:windowTranslucentStatus">true</item>
+
+
 </style>
+
+    <style name="DefaultTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+<!--        <item name="android:background">@android:color/white</item>-->
+    </style>
+
+    <style name="PreferenceTheme1" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:background">@android:color/holo_blue_bright</item>
+    </style>
+
+    <style name="PreferenceTheme2" parent="@android:style/Widget.ListView">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:background">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="listViewPrefs" parent="@android:style/Widget.ListView">
+        <item name="android:background">@color/colorBgBlue</item>
+        <item name="android:cacheColorHint">@color/colorBgBlue</item>
+    </style>
+
+
 </resources>
 
