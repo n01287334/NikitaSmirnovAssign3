@@ -24,6 +24,16 @@ public class SmirnovUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+    @Test
+    public void addition_isCorrect2() {
+        assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void addition_isCorrect3() {
+        assertEquals(4, 2 + 2);
+    }
+
 //    @Test
 //    public void test_onCreate() {
 //        // Mock some data
