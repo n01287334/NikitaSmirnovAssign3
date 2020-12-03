@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nikitafragment_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBgGreen"
+    tools:context=".NiHome">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tvNikita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/nikita_smirnov"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvN01287334"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/n01287334"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvNikita" />
+
+        <TextView
+            android:id="@+id/nikitacurrentdate"
+            android:layout_width="228dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/date"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/nikitaspinner"
+            android:layout_width="144dp"
+            android:layout_height="58dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="52dp"
+            android:outlineAmbientShadowColor="#000000"
+            android:outlineProvider="bounds"
+            android:outlineSpotShadowColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/nikitaimageButton"
+            app:layout_constraintEnd_toStartOf="@+id/nikitadatePicker1" />
+
+        <DatePicker
+            android:id="@+id/nikitadatePicker1"
+            android:layout_width="229dp"
+            android:layout_height="134dp"
+            android:layout_marginTop="120dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/nikitaimageButton"
+            android:layout_width="411dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="8dp"
+            android:background="#FFFFFF"
+            android:contentDescription="@string/show_the_selected_course_and_date"
+            android:src="@android:drawable/ic_menu_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nikitadatePicker1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

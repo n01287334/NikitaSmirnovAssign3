@@ -1,21 +1,9 @@
+<!--Nikita Smirnov n01287334 RNB-->
 <resources>
     <string name="app_name">NikitaLab3</string>
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
+    <string name="color_header">Screens background color</string>
     <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -45,5 +33,24 @@
     </string-array>
 
     <string name="myCoolButton">but</string>
+    <string name="date">showthedate</string>
+    <string name="header">NikitaLab3</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="portrait">Portrait layout only</string>
+    <string name="savebuttonsummary">Tap to immediately apply and save the new settings</string>
+    <string name="savebuttonname">APPLY changes and SAVE</string>
+    <string name="switchsummaryoff">Portrait mode only OFF</string>
+    <string name="switchsummaryon">Portrait mode only ON</string>
+    <string name="colortitle">Tap to select the background color</string>
+    <string name="show_the_selected_course_and_date">Show the selected course and date</string>
+    <string name="nikita_smirnov">Nikita Smirnov</string>
+    <string name="n01287334">N01287334</string>
+    <string name="devicescreenb">Device screen brightness</string>
+    <string name="binstruction">Move left or right to change the brightness</string>
+    <string name="onbackalert">Are you sure you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

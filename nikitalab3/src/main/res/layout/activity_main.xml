@@ -22,7 +22,7 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/nikitadrawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:icon="@drawable/ic_drawermenu">
@@ -41,7 +41,7 @@
 
         <!-- The main content view where fragments are loaded -->
         <FrameLayout
-            android:id="@+id/flContent"
+            android:id="@+id/nikitadrawerContent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -50,12 +50,13 @@
     <!-- The navigation drawer that comes from the left -->
     <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nvView"
+        android:id="@+id/nikitadrawerView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white"
         app:menu="@menu/drawer_view"
         app:headerLayout="@layout/nav_header"
+
         />
 </androidx.drawerlayout.widget.DrawerLayout>
